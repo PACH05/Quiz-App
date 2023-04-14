@@ -9,7 +9,9 @@ const Home = () => {
       <div>
         <Navbar />
         <div className="flex justify-center align-middle py-1 font-semibold">
-        <h1 className="my-4 mx-4 align-middle justify-center text-2xl">Create or Take a quiz now!!!</h1>
+          <h1 className="my-4 mx-4 align-middle justify-center text-2xl">
+            Create or Take a quiz now!!!
+          </h1>
         </div>
         <br />
         <div className="flex flex-row justify-evenly">

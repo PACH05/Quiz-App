@@ -1,25 +1,26 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Image from "./bre.png";
-import { data } from '../components/firebase/FireBase'
-
+import { data } from "../components/firebase/FireBase";
 
 const TakeBox = () => {
   const [quiz, setQuiz] = useState("");
   const navigate = useNavigate();
-   
-  const handleClick = ()=>{
-    data.ref().child(quiz).on('value', fetchdata=>{
-      const getData = Object.values(fetchdata.val())
-       if(getData != null){
-       navigate("/quiz", {state : {getData}})
-    }
-    else{
-      alert("NO QUIZ FOUND!!")
-    }
-    });
-  }
-  
+
+  const handleClick = () => {
+    data
+      .ref()
+      .child(quiz)
+      .on("value", (fetchdata) => {
+        const getData = Object.values(fetchdata.val());
+        if (getData != null) {
+          navigate("/quiz", { state: { getData } });
+        } else {
+          alert("NO QUIZ FOUND!!");
+        }
+      });
+  };
+
   return (
     <div className="my-2 bg-[#F0F0F0] rounded-xl w-72">
       <div className="m-2 p-2">
@@ -35,8 +36,10 @@ const TakeBox = () => {
           <br />
           <button
             className="flex justify-center align-middle mx-16 py-2 bg-[#4A94EA] text-[#FFFFFF] rounded-xl w-32 h-10"
-            onClick={()=>handleClick()}
-          >Take Quiz</button>
+            onClick={() => handleClick()}
+          >
+            Take Quiz
+          </button>
         </div>
       </div>
     </div>

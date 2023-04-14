@@ -4,12 +4,11 @@ import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 
 const Create = () => {
-
- useEffect(()=>{
-   alert("After adding basic quiz details, Click the ADD QUESTIONS button. Enter all the questions and use the ADD NEXT QUESTION button to add as many questions you want. After the final question, click the PUBLISH button")
- },[])
-
-
+  useEffect(() => {
+    alert(
+      "After adding basic quiz details, Click the ADD QUESTIONS button. Enter all the questions and use the ADD NEXT QUESTION button to add as many questions you want. After the final question, click the PUBLISH button"
+    );
+  }, []);
 
   const [show, setShow] = useState(true);
   const [name, setName] = useState("");
@@ -39,9 +38,9 @@ const Create = () => {
     } else {
       setShow(false);
       setDisabled(true);
-      arr.push({ description: des});
-      arr.push({time: tl});
-      arr.push({marksPerQuestion: mpq});
+      arr.push({ description: des });
+      arr.push({ time: tl });
+      arr.push({ marksPerQuestion: mpq });
       data.ref().child(name).push(arr);
     }
     console.log(name);
@@ -73,7 +72,7 @@ const Create = () => {
         b: OptionB,
         c: OptionC,
         d: OptionD,
-        cor : correct
+        cor: correct,
       });
       data.ref().child(name).push(arr);
       setQues("");
@@ -87,9 +86,11 @@ const Create = () => {
   const navigate = useNavigate();
 
   const handlePublish = () => {
-       handleNextQuestion();
-       alert("Quiz created successfully, share the QUIZ NAME with the participants")
-       navigate("/")
+    handleNextQuestion();
+    alert(
+      "Quiz created successfully, share the QUIZ NAME with the participants"
+    );
+    navigate("/");
   };
 
   return (
