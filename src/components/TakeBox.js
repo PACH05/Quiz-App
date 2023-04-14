@@ -6,20 +6,29 @@ import { data } from "../components/firebase/FireBase";
 const TakeBox = () => {
   const [quiz, setQuiz] = useState("");
   const navigate = useNavigate();
-
-  const handleClick = () => {
-    data
+ 
+  const handleClick = async() => {
+    if(quiz == null || quiz == ""){
+      alert("Quiz name can't be empty")
+      return;
+    }
+    const check = await data.ref(quiz)
+    .orderByKey().limitToFirst(1).once('value')
+    .then(res => res.exists());
+    
+  if(check){
+      data
       .ref()
       .child(quiz)
       .on("value", (fetchdata) => {
         const getData = Object.values(fetchdata.val());
-        if (getData != null) {
           navigate("/quiz", { state: { getData } });
-        } else {
-          alert("NO QUIZ FOUND!!");
-        }
-      });
-  };
+      }); 
+    }
+    else{
+      alert("No Quiz Found")
+    } 
+  }
 
   return (
     <div className="my-2 bg-[#F0F0F0] rounded-xl w-72">

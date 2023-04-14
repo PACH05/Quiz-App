@@ -16,9 +16,6 @@ const Quiz = () => {
 
   const location = useLocation();
   const quizdata = location.state.getData;
-  console.log(quizdata);
-  console.log(quizdata.length);
-
   const time = location.state.getData[0][1].time * 60;
   return (
     <div>
