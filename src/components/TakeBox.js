@@ -3,30 +3,33 @@ import { useNavigate } from "react-router-dom";
 import Image from "./bre.png";
 import { data } from "../components/firebase/FireBase";
 
+//Component to display the Enter quiz 
 const TakeBox = () => {
   const [quiz, setQuiz] = useState("");
   const navigate = useNavigate();
  
+  // Button click handler
   const handleClick = async() => {
-    if(quiz === null || quiz === ""){
+    if(quiz === null || quiz === ""){ // If the input is empty
       alert("Quiz name can't be empty")
       return;
     }
+    //Check if the quiz exists in the database
     const check = await data.ref(quiz)
     .orderByKey().limitToFirst(1).once('value')
     .then(res => res.exists());
     
-  if(check){
+  if(check){ //Fetch quiz details if it exists
       data
       .ref()
       .child(quiz)
       .on("value", (fetchdata) => {
         const getData = Object.values(fetchdata.val());
-          navigate("/quiz", { state: { getData } });
+          navigate("/quiz", { state: { getData } }); //Navigate to Quiz page
       }); 
     }
     else{
-      navigate("/error");
+      navigate("/error"); //Navigate to Error Page
     } 
   }
 

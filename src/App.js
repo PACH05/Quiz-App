@@ -7,6 +7,7 @@ import Quiz from "./pages/Quiz";
 import Scores from "./pages/Scores";
 import Error from "./pages/Error";
 
+//Entry point of React App
 function App() {
   return (
     <div>

@@ -1,13 +1,17 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import { useLocation } from "react-router-dom";
+
+//Page to display scores
 const Scores = () => {
-  const location = useLocation();
-  const score = location.state.score;
+  const location = useLocation(); //Hook
+  const score = location.state.score; //Get the score from the previous route
   return (
     <div>
       <NavBar />
-      <h1>Score is {score}</h1>
+      {/* Display score */}
+      <h1>Score is {score}</h1> 
+
     </div>
   );
 };

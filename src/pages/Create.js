@@ -3,9 +3,10 @@ import { data } from "../components/firebase/FireBase";
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 
+//Create Quiz page 
 const Create = () => {
 
-
+  //States to handle various inputs in the page
   const [show, setShow] = useState(true);
   const [name, setName] = useState("");
   const [des, setDes] = useState("");
@@ -14,6 +15,7 @@ const Create = () => {
   const [noq, setNoq] = useState(0);
   const [disable, setDisabled] = useState(false);
 
+  //States to handle the questions added
   const [Ques, setQues] = useState("");
   const [OptionA, setA] = useState("");
   const [OptionB, setB] = useState("");
@@ -22,7 +24,9 @@ const Create = () => {
   const [correct, setCorrect] = useState("");
 
   const arr = [];
+  //Function to add question details to the database
   const handleAddQuestion = () => {
+    //Check for null values
     if (
       name === null ||
       des === null ||
@@ -40,13 +44,15 @@ const Create = () => {
       arr.push({ description: des });
       arr.push({ time: tl });
       arr.push({ marksPerQuestion: mpq });
-      data.ref().child(name).push(arr);
+      data.ref().child(name).push(arr); //Push question to database
     }
     console.log(name);
     console.log(arr);
   };
 
+  //Function to add questions to the database on button click
   const handleNextQuestion = () => {
+    //Check for null values
     if (
       Ques === null ||
       OptionA === null ||
@@ -57,14 +63,7 @@ const Create = () => {
     ) {
       alert("All fields are mandatory!!");
     } else {
-      // console.log({
-      //   Question: Ques,
-      //   a: OptionA,
-      //   b: OptionB,
-      //   c: OptionC,
-      //   d: OptionD,
-      //   cor : correct
-      // });
+     //Push to array of objects
       arr.push({
         Question: Ques,
         a: OptionA,
@@ -73,7 +72,7 @@ const Create = () => {
         d: OptionD,
         cor: correct,
       });
-      data.ref().child(name).push(arr);
+      data.ref().child(name).push(arr); //Push to database
       setQues("");
       setA("");
       setB("");
@@ -84,12 +83,13 @@ const Create = () => {
   };
   const navigate = useNavigate();
 
+  //Function to publish the quiz once all questions are added
   const handlePublish = () => {
     handleNextQuestion();
     alert(
       "Quiz created successfully, share the QUIZ NAME with the participants"
     );
-    navigate("/");
+    navigate("/"); //Navigate to home page after successfull publish
   };
 
   return (

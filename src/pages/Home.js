@@ -3,6 +3,7 @@ import TakeBox from "../components/TakeBox";
 import Navbar from "../components/NavBar";
 import CreateBox from "../components/CreateBox";
 
+//Home Page (Landing page)
 const Home = () => {
   return (
     <div>

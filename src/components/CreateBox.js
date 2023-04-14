@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Image from "./bulbrm.png";
 
+//Component of the Create Quiz Box
 const CreateBox = () => {
   return (
     <div className="my-3 p-4 bg-[#f1efef] rounded-xl w-72">

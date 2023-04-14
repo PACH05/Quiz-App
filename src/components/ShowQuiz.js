@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+//Component to Display the quiz questions
 const ShowQuiz = (props) => {
   let index = 1;
   let ans = "";
@@ -12,21 +13,22 @@ const ShowQuiz = (props) => {
     console.log(ans);
     console.log(props.quiz[index][0].cor);
   }
+  //Function to go to next question
   function handleNextQuestion() {
-    if (index === props.quiz.length - 1) {
-      if (ans === props.quiz[index][0].cor) {
+    if (index === props.quiz.length - 1) { //If quiz has ended
+      if (ans === props.quiz[index][0].cor) { //If the answer is correct
         score += props.quiz[0][2].marksPerQuestion;
-        navigate("/scores", { state: { score: score } });
+        navigate("/scores", { state: { score: score } }); //Navigate to scores page
       } else {
-        navigate("/scores", { state: { score: score } });
+        navigate("/scores", { state: { score: score } }); //Navigate to scores page
       }
-    } else if (ans === props.quiz[index][0].cor) {
+    } else if (ans === props.quiz[index][0].cor) { // Update score and move to next question
       score += props.quiz[0][2].marksPerQuestion;
       index += 1;
     } else {
       index += 1;
     }
-    console.log("Score = ", score);
+    // console.log("Score = ", score);
   }
   return (
     <div>

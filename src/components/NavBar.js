@@ -1,5 +1,6 @@
 import React from "react";
 
+//Component of the Navbar
 const NavBar = () => {
   return (
     <div className="flex justify-start h-15 font-semibold bg-[#4A94EA] text-[#efefef]">
