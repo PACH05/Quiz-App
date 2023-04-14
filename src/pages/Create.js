@@ -4,11 +4,7 @@ import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 
 const Create = () => {
-  useEffect(() => {
-    alert(
-      "After adding basic quiz details, Click the ADD QUESTIONS button. Enter all the questions and use the ADD NEXT QUESTION button to add as many questions you want. After the final question, click the PUBLISH button"
-    );
-  }, []);
+
 
   const [show, setShow] = useState(true);
   const [name, setName] = useState("");
@@ -36,6 +32,9 @@ const Create = () => {
     ) {
       alert("All fields are mandatory!!");
     } else {
+      { alert(
+        "Enter all the questions statement and options, then use the ADD NEXT QUESTION button to add as many questions you want. After the final question, click the PUBLISH button"
+      )}
       setShow(false);
       setDisabled(true);
       arr.push({ description: des });

@@ -8,7 +8,7 @@ const TakeBox = () => {
   const navigate = useNavigate();
  
   const handleClick = async() => {
-    if(quiz == null || quiz == ""){
+    if(quiz === null || quiz === ""){
       alert("Quiz name can't be empty")
       return;
     }
@@ -26,7 +26,7 @@ const TakeBox = () => {
       }); 
     }
     else{
-      alert("No Quiz Found")
+      navigate("/error");
     } 
   }
 

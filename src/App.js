@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Create from "./pages/Create";
 import Quiz from "./pages/Quiz";
 import Scores from "./pages/Scores";
+import Error from "./pages/Error";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/createquiz" element={<Create />} />
           <Route exact path="/quiz" element={<Quiz />} />
           <Route exact path="/scores" element={<Scores />} />
+          <Route exact path="/error" element={<Error />} />
         </Routes>
       </Router>
     </div>
