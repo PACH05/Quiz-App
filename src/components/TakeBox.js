@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Image from "./bre.png";
 import { data } from '../components/firebase/FireBase'
@@ -9,19 +9,17 @@ const TakeBox = () => {
   const navigate = useNavigate();
    
   const handleClick = ()=>{
-    data.ref().child("New Quiz").on('value', fetchdata=>{
+    data.ref().child(quiz).on('value', fetchdata=>{
       const getData = Object.values(fetchdata.val())
-      // console.log(getData);
        if(getData != null){
        navigate("/quiz", {state : {getData}})
     }
     else{
       alert("NO QUIZ FOUND!!")
     }
-      fetch = getData;
     });
-   
   }
+  
   return (
     <div className="my-2 bg-[#F0F0F0] rounded-xl w-72">
       <div className="m-2 p-2">

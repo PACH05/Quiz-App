@@ -23,10 +23,8 @@ const CountDown = ({time, show}) => {
     },[])
 
     useEffect(()=>{
-        console.log(timer.current);
         if(counter <= 0){
             clearInterval(timer.current);
-            console.log("Time up");
             show(0);
         }
     }, [counter])

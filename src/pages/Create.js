@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { data } from "../components/firebase/FireBase";
 import NavBar from "../components/NavBar";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+
+ useEffect(()=>{
+   alert("After adding basic quiz details, Click the ADD QUESTIONS button. Enter all the questions and use the ADD NEXT QUESTION button to add as many questions you want. After the final question, click the PUBLISH button")
+ },[])
+
+
+
   const [show, setShow] = useState(true);
   const [name, setName] = useState("");
   const [des, setDes] = useState("");
@@ -68,7 +76,6 @@ const Create = () => {
         cor : correct
       });
       data.ref().child(name).push(arr);
-      console.log(arr);
       setQues("");
       setA("");
       setB("");
@@ -77,9 +84,12 @@ const Create = () => {
       setCorrect("");
     }
   };
+  const navigate = useNavigate();
 
   const handlePublish = () => {
-   
+       handleNextQuestion();
+       alert("Quiz created successfully, share the QUIZ NAME with the participants")
+       navigate("/")
   };
 
   return (
@@ -96,7 +106,7 @@ const Create = () => {
           <div className="flex-col align-middle justify-center">
             <input
               type="text"
-              placeholder="Enter Quiz Name"
+              placeholder="Enter Quiz Name(Share this with the participants)"
               className="flex justify-center align-middle w-96 rounded-lg h-10 mx-1 my-3 px-1 border-spacing-2 text-left border-2 border-indigo-400"
               onChange={(e) => {
                 setName(e.target.value);
@@ -215,7 +225,7 @@ const Create = () => {
             <br />
             <div className="flex justify-center align-middle">
               <button
-                className="flex justify-center align-middle py-1.5 bg-[#636363] text-[#000000] rounded-xl w-40 h-10"
+                className="flex justify-center align-middle mx-2 py-1.5 bg-[#636363] text-[#000000] rounded-xl w-40 h-10"
                 onClick={handleNextQuestion}
               >
                 Add Next Question
@@ -224,7 +234,7 @@ const Create = () => {
               <br />
               <br />
               <button
-                className="flex justify-center align-middle py-1.5 bg-[#4A94EA] text-[#FFFFFF] rounded-xl w-32 h-10"
+                className="flex justify-center align-middle py-1.5 bg-[#4A94EA] text-[#FFFFFF] rounded-xl mx-2 w-32 h-10"
                 onClick={handlePublish}
               >
                 Publish Quiz

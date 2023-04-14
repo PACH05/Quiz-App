@@ -1,35 +1,51 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const ShowQuiz = (props) => {
 
-   const [ans, setAns] = useState(""); 
-   const [index, setindex] = useState(1);
-   const [score, setScore] = useState(1);
+   let index = 1;
+   let ans = "";
+   let score = 0;
+   const navigate = useNavigate();
+
    function onChangeValue(e){
-        setAns(e.target.value);
-        console.log(e.target.value)
+        ans = e.target.value;
         console.log(ans);
+        console.log(props.quiz[index][0].cor);
     }
     function handleNextQuestion(){
-        if(ans == props.quiz[2][0].cor){
-            setScore( score + 1);
-            console.log(score);
+        if(index === props.quiz.length - 1){
+           if(ans === props.quiz[index][0].cor){
+            score += props.quiz[0][2].marksPerQuestion;
+            navigate("/scores", {state : {score : score}});
+           }
+           else{
+            navigate("/scores", {state : {score : score}});
+           }
         }
+        else if(ans === props.quiz[index][0].cor){
+          score +=  props.quiz[0][2].marksPerQuestion;
+          index += 1;
+        }
+        else{
+          index += 1;
+        }
+        console.log("Score = ", score);
     }
   return (
     <div>
-        <h1>
-            {props.quiz[2][0].Question} :
+        <h1 className='flex mx-3'>
+            {props.quiz[index][0].Question} :
          </h1>
          <br />
          <div onChange={onChangeValue}>
-        <input type="radio" value= {props.quiz[2][0].a}  name="option" /> {props.quiz[2][0].a} 
+        <input type="radio" value= {props.quiz[index][0].a}  name="option" /> {props.quiz[index][0].a} 
         <br />
-        <input type="radio" value= {props.quiz[2][0].b}  name="option" /> {props.quiz[2][0].b} 
+        <input type="radio" value= {props.quiz[index][0].b}  name="option" /> {props.quiz[index][0].b} 
         <br />
-        <input type="radio" value= {props.quiz[2][0].c}  name="option" /> {props.quiz[2][0].c} 
+        <input type="radio" value= {props.quiz[index][0].c}  name="option" /> {props.quiz[index][0].c} 
         <br />
-        <input type="radio" value= {props.quiz[2][0].d}  name="option" /> {props.quiz[2][0].d} 
+        <input type="radio" value= {props.quiz[index][0].d}  name="option" /> {props.quiz[index][0].d} 
         <br />
       </div>
       <br />
