@@ -4,8 +4,11 @@ Each question in the quiz is a multiple choice question with one correct option.
 Steps to run the project in your local machine :
 
 Step 1 : Clone the repository using "git clone" command.
+
 Step 2 : Open the terminal in the folder containing the src folder.
+
 Step 3 : To run the WebApp, use "npm start" command in the terminal.
+
 Step 4 : The app will run in localhost:3000
 
 
